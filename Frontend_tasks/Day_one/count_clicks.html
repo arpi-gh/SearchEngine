@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+    <title></title>
+    <style>
+      body {
+        background-color: cadetblue;
+      }
+      h1 {
+        color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <h1 id= "clicks">0 clicks </h1>
+      <button onclick="clickCounter()" style="font-size: 25px; background-color: white; color: cadetblue; border-radius: 5px;" type="button" name="click here">Click Here</button>
+
+  <script>
+    var clicks = 0
+    function clickCounter() {
+      clicks += 1
+      document.getElementById("clicks").innerHTML = clicks + "clicks"
+    }
+
+  </script>
+  </body>
+</html>
