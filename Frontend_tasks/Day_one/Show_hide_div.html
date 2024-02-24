@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hide and show element</title>
+    <style>
+      .main
+      {
+        background-color: green;
+        padding: 50 px 10 px;
+        margin: 20 px 0 px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" class="main"> WELCOME! </div>
+    <button onclick="hideShow()">Hide and Show</button>
+    <script type="text/javascript">
+      var div = document.getElementById('main');
+      var display = 0;
+
+      function hideShow()
+      {
+        if(display == 1)
+        {
+          div.style.display = 'block';
+          display = 0;
+        }
+        else
+        {
+          div.style.display = 'none';
+          display = 1;
+        }
+      }
+    </script>
+  </body>
+</html>
