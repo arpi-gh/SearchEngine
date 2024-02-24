@@ -1,0 +1,41 @@
+body {
+  margin: 0px;
+}
+
+main {
+  margin-left: 20px; /* Removed extra colon */
+  margin-right: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: green;
+}
+
+h3 {
+  color: green;
+}
+
+.navbar ul {
+  list-style-type: none;
+  background-color: green;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  display: block;
+  text-align: center;
+}
+
+.navbar a:hover { /* Removed space before :hover */
+  background-color: lightgreen;
+}
+
+.navbar li {
+  float: left;
+}
