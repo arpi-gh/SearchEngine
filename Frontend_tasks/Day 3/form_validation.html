@@ -13,26 +13,41 @@
       h2 {
         color: white;
       }
+      label {
+        color: white
+      }
+      div {
+        color: white
+      }
     </style>
   </head>
   <body>
     <h1>User Information</h1>
-    <h2>Enter your email:</h2>
-    <form method="post">
-      <input type="text" name="username"
+    <div id="error"></div>
+    <form id="form" method="post">
+      <div>
+        <label for="email">Email</label>
+      </div>
+      <input id = "email" type="text" name="email"
         autocomplete="off" minlength="8"
-        maxlength="40" pattern=".*@gmail.com"
-        required>
+        maxlength="40" pattern=".*@gmail.com">
       <input type="submit" value="Submit">
-    </form>
-    <h2>Enter your phone number:</h2>
-    <form method="post">
-      <input type="number" name="phone_number"
-        autocomplete="off" minlength="8"
-        maxlength="20"
-        required>
-      <input type="submit" value="Submit">
-    </form>
+  </form>
+<script type="text/javascript">
+  const email = document.getElementById('email')
+  const form = document.getElementById('form')
+  const errorElement = document.getElementById('error')
 
+  form.addEventListener('submit', (e) => {
+    let messages = []
+    if (email.value === ''){
+       messages.push('Please enter an email address.')
+    }
+    if (messages.length > 0) {
+      e.preventDefault()
+      errorElement.innerText = messages.join(', ')
+    }
+  })
+</script>
   </body>
 </html>
