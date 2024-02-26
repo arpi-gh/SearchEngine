@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tabbed Interface</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      text-align: center;
+      background-color: cadetblue;
+    }
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    .hero {
+      width: 80%;
+      height: 450px;
+      position: relative;
+      margin: 100px auto;
+    }
+    .btn-box {
+      display: flex;
+      border-bottom: 1px solid #ccc;
+    }
+    .btn-box button {
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      margin-right: 25px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+    .content {
+      display: none;
+    }
+    .content.active {
+      display: block;
+    }
+    h1{
+      color :white;
+    }
+    p{
+      color: white
+    }
+  </style>
+</head>
+<body>
+<div class="hero">
+  <div class="btn-box">
+    <button class="tab-btn" data-target="books">BOOKS</button>
+    <button class="tab-btn" data-target="planners">PLANNERS</button>
+  </div>
+  <div id="books" class="content">
+    <div class="content-left">
+      <h1>Books You Can Find Here!</h1>
+      <p>
+        Chinese: "地球往事" 、“三体”、“黑暗森林”、“死神永生”、“美丽新世界”<br>
+        English: "Brave New World", "Animal Farm", "Harry Potter", "Dune", "Lord of the Rings"
+      </p>
+    </div>
+  </div>
+  <div id="planners" class="content">
+    <div class="content-right">
+      <h1>Want to Be More Productive?</h1>
+      <p>
+        Purchase one of the products below:
+        - Daily planners
+        - Weekly planners
+        - Monthly planners
+        - Academic planners
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.content');
+
+    tabButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const target = button.getAttribute('data-target');
+        tabContents.forEach(function (content) {
+          content.classList.remove('active');
+        });
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>
