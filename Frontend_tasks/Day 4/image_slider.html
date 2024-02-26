@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=devie-width", initial-scale=1.0>
+    <title>Image Slider</title>
+  </head>
+  <body>
+    <h1>Studio Ghibli</h1>
+    <img src="" alt="Image" id="img">
+    <button onclick="previous()">Previous</button>
+    <button onclick="next()">Next</button>
+    <style>
+      body {
+        text-align: center;
+        background-color: cadetblue;
+      }
+      h1 {
+        color: white;
+        }
+      #img {
+        border-radius: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+      var i = 0;
+      var img = document.getElementById("img");
+      var array = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png"];
+      function next(){
+        i++;
+        img.src = array[i];
+      }
+      function previous() {
+        i--;
+        img.src = array[i];
+      }
+
+    </script>
+
+  </body>
+</html>
