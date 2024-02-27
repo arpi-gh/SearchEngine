@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        body {
+            background-color: #800080;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        label {
+            color: white;
+        }
+
+        div {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>User Information</h1>
+
+<div id="error1"></div>
+<form id="form1" method="post">
+    <div>
+        <label for="name">Name</label>
+    </div>
+    <input id="name" type="text" name="name"
+           autocomplete="off" minlength="2"
+           maxlength="40">
+    <input type="submit" value="Submit">
+</form>
+
+<div id="error2"></div>
+<form id="form2" method="post">
+    <div>
+        <label for="email">Email</label>
+    </div>
+    <input id="email" type="text" name="email"
+           autocomplete="off" minlength="8"
+           maxlength="40">
+    <input type="submit" value="Submit">
+</form>
+
+<script type="text/javascript">
+    function saveFormData() {
+        localStorage.setItem('name', document.getElementById('name').value);
+        localStorage.setItem('email', document.getElementById('email').value);
+    }
+
+    function loadFormData() {
+        const name = localStorage.getItem('name');
+        const email = localStorage.getItem('email');
+
+        if (name !== null) {
+            document.getElementById('name').value = name;
+        }
+        if (email !== null) {
+            document.getElementById('email').value = email;
+        }
+    }
+
+    document.getElementById('form1').addEventListener('submit', (e) => {
+        saveFormData();
+        const name = document.getElementById('name');
+        const errorElement1 = document.getElementById('error1');
+        let messages = [];
+        if (name.value.trim() === '') {
+            messages.push('Please enter a name.');
+        }
+        if (messages.length > 0) {
+            e.preventDefault();
+            errorElement1.innerText = messages.join(', ');
+        }
+    });
+
+    document.getElementById('form2').addEventListener('submit', (e) => {
+        saveFormData();
+        const email = document.getElementById('email');
+        const errorElement2 = document.getElementById('error2');
+        let messages = [];
+        if (email.value.trim() === '') {
+            messages.push('Please enter an email address.');
+        } else {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value.trim())) {
+                messages.push('Please enter a valid email address.');
+            }
+        }
+        if (messages.length > 0) {
+            e.preventDefault();
+            errorElement2.innerText = messages.join(', ');
+        }
+    });
+
+    window.onload = loadFormData;
+</script>
+</body>
+</html>
