@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dynamic Table</title>
+</head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .table {
+      border-collapse: collapse;
+      width: 80%;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th,
+    .table td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    .table th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .table tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+<body>
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+  <table class="table">
+    <thead>
+
+    </thead>
+    <tbody>
+
+    </tbody>
+
+  </table>
+
+</div>
+<script type="text/javascript">
+  const employees = [
+    {
+      id: 1,
+      name: "John Doe",
+      age: 30,
+      department: "Engineering",
+      role: { title: "Frontend Developer", level: "Mid" },
+      contact: { email: "john.doe@example.com", phone: "123-456-7890" },
+      skills: ["JavaScript", "React", "CSS"]
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      age: 28,
+      department: "Design",
+      role: { title: "UI/UX Designer", level: "Senior" },
+      contact: { email: "jane.smith@example.com", phone: "098-765-4321" },
+      skills: ["Figma", "Sketch", "Adobe XD"]
+    },
+    {
+      id: 3,
+      name: "Sheldon Cooper",
+      age: 30,
+      department: "Physics",
+      role: { title: "Theoretical Physicist", level: "Senior" },
+      contact: { email: "sheldon.cooper@gmail.com", phone: "098-453-4367" },
+      skills: ["String Theory", "Programming", "Analytical Thinking"]
+    },
+    {
+      id: 4,
+      name: "Amy Farah Fowler",
+      age: "30",
+      department: "Neuroscience",
+      role: { title: "Neuroscientist", level: "Senior" },
+      contact: { email: "amyandsheldon@gmail.com", phone: "098-817-9898" },
+      skills: ["Neuroscience", "Partying", "Analytical Thinking"]
+    }
+  ];
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const head = document.querySelector('thead');
+    const body = document.querySelector('tbody');
+    let headHTML = '';
+    let bodyHTML = '';
+
+    const columnHeaders = Object.keys(employees[0]);
+    headHTML += '<tr>';
+    columnHeaders.forEach(header => {
+      headHTML += `<th>${header}</th>`;
+    });
+    headHTML += '</tr>';
+    head.innerHTML = headHTML;
+
+    employees.forEach(employee => {
+      bodyHTML += '<tr>';
+      columnHeaders.forEach(header => {
+        if (typeof employee[header] === 'object') {
+          // If the value is an object, we may need to extract properties
+          if (Array.isArray(employee[header])) {
+            // Join array values if it's an array
+            bodyHTML += `<td>${employee[header].join(', ')}</td>`;
+          } else {
+            bodyHTML += `<td>${Object.values(employee[header]).join(' - ')}</td>`;
+          }
+        } else {
+          bodyHTML += `<td>${employee[header]}</td>`;
+        }
+      });
+      bodyHTML += '</tr>';
+    });
+    body.innerHTML = bodyHTML;
+  });
+</script>
+</body>
+</html>
