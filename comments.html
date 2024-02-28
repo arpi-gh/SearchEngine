@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nested Comments</title>
+  <style>
+    body {
+      background-color: cadetblue;
+    }
+    h2 {
+      color: white;
+    }
+    .comment {
+      margin-left: 20px;
+      border-left: 2px solid #ccc;
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Webpage Post</h2>
+  <div id="commentsContainer"></div>
+
+  <script>
+    const comments = [
+      {
+        id: 1,
+        text: "This is the first comment",
+        parentId: null,
+        replies: [
+          {
+            id: 2,
+            text: "This is a reply to the first comment",
+            parentId: 1,
+            replies: [
+              {
+                id: 3,
+                text: "This is a nested reply",
+                parentId: 2,
+                replies: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 4,
+        text: "This is an independent comment",
+        parentId: null,
+        replies: []
+      }
+    ];
+
+    const commentsContainer = document.getElementById('commentsContainer');
+
+    function generateComment(comment, level) {
+      const commentElement = document.createElement('div');
+      commentElement.classList.add('comment');
+      commentElement.textContent = comment.text;
+      commentElement.style.marginLeft = level * 20 + 'px';
+
+      const backgroundColor = getBackgroundColor(level);
+      commentElement.style.backgroundColor = backgroundColor;
+
+      commentsContainer.appendChild(commentElement);
+
+      if (comment.replies.length > 0) {
+        comment.replies.forEach(reply => {
+          generateComment(reply, level + 1);
+        });
+      }
+    }
+
+    function generateComments(comments) {
+      comments.forEach(comment => {
+        if (comment.parentId === null) {
+          generateComment(comment, 0);
+        }
+      });
+    }
+
+    function getBackgroundColor(level) {
+      const backgroundColors = ['#ffffff', '#f0f0f0', '#e0e0e0'];
+      const index = level % backgroundColors.length;
+
+      return backgroundColors[index];
+    }
+
+    generateComments(comments);
+  </script>
+</body>
+</html>
